@@ -6,10 +6,22 @@ const { ensureAuthenticated } = require('../config/auth')
 
 const Todo = require('../model/TodoSchema');
 
-router.post('/signup', passport.authenticate('local-signup', {
-    successRedirect: '/profile',
-    failureRedirect: '/signup',
-}));
+router.post('/signup', (req, res, next) => {
+    passport.authenticate('local-signin', (err, user, info) => {
+        if (err) {
+            console.log('error');
+
+            return next(err);
+        }
+
+        if (!user) {
+            console.log(info);
+            return res.send({ info });
+        }
+
+        res.send({ user, info });
+    })(req, res, next);
+});
 
 router.post('/signin', (req, res, next) => {
     passport.authenticate('local-signin', (err, user, info) => {
