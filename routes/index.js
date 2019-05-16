@@ -7,7 +7,7 @@ const { ensureAuthenticated } = require('../config/auth')
 const Todo = require('../model/TodoSchema');
 
 router.post('/signup', (req, res, next) => {
-    passport.authenticate('local-signin', (err, user, info) => {
+    passport.authenticate('local-signup', (err, user, info) => {
         if (err) {
             console.log('error');
 
