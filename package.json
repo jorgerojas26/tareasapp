@@ -2,7 +2,7 @@
   "name": "reactAppWithBackend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "dev": "concurrently --kill-others \"npm start\" \"cd client && npm start\""
